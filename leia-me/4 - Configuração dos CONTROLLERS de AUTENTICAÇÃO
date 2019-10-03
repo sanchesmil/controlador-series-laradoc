@@ -1,0 +1,27 @@
+
+NA pasta 'app/Http/Controllers/Auth':
+
+CONTROLLER de REGISTRO de USUÁRIO: 'RegisterController.php':
+
+    ALTERAR o 'RegisterController.php':
+
+    1º Criar um atributo do tipo EntityManager e fazer a classe receber no contrutor um EntityManager.
+
+    2º No método VALIDATOR:
+
+       Substiturir a validação de email único => 'unique:user' por 'unique:App\Entities\User'.
+
+       Isso é necessário porque o driver Doctrine precisa de uma referência da classe e não da tabela (como o Elloquent).
+
+    3º No método CREATE:
+
+       3.1 - Criptografar A senha (password) vindo do form através do método Hash (Padrão do Laravel)
+
+       3.2 - Intanstanciar um novo objeto 'USER' passando os dados vindos do form (nome, email e password criptografado);
+
+       3.3 - Usar o EntityManager para persistir o objeto no banco via métodos 'persist' e 'flush'.
+
+CONTROLLER de LOGIN: LoginController.php
+
+
+

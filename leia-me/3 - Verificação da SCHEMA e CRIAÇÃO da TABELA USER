@@ -1,0 +1,9 @@
+
+
+PARA VALIDAR o ESQUEMA de MAPEAMENTO:
+
+    cmd> php artisan doctrine:schema:validate
+
+PARA CRIAR a TABELA no BANCO:
+
+    cmd> php artisan doctrine:schema:create

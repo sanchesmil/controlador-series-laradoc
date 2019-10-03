@@ -1,0 +1,54 @@
+
+PASSOS A CRIAÇÃO DE PROJETO com LARAVEL e DOCTRINE
+
+1 CRIAÇÃO do PROJETO em LARAVEL versão 5.5
+
+    composer create-project --prefer-dist laravel/laravel NOME_PROJETO 5.5.*
+
+2 IMPORTAÇÃO do DOCTRINE ORM:
+
+    cmd> composer require "laravel-doctrine/1.4.*"
+
+    2.1 = Publicação da configuração do ORM:  (cria o arquivo 'doctrine.php' na pasta 'config')
+
+          cmd>  php artisan vendor:publish --tag="config"
+
+OBS.1: A versão 1.4.* do Doctrine ORM é compatível com a versão 5.5.* do laravel.
+       Nesta configuração o Service Provider e Facades são automaticamente registrados.
+
+OBS.2: Para outras versões e configurações olhar em https://github.com/laravel-doctrine/orm
+
+3 IMPORTAÇÃO do DOCTRINE MIGRATIONS:
+
+    cmd> composer require "laravel-doctrine/migrations"
+
+    3.1 = Registrar (colar) o Provedor de Serviços de migrations em 'config/app.php':
+
+          LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
+
+    3.2 = Publicar a configuração da Migration: (cria o arquivo 'migrations.php' na pasta 'config')
+
+          cmd> php artisan vendor:publish --tag="config"
+
+4 IMPORTAÇÃO das EXTENSIONS do DOCTRINE:
+
+    cmd> composer require "laravel-doctrine/extensions:1.0.*"
+
+    4.1 = IMPORTAR a EXTENSÃO "GEDMO":
+
+         cmd> composer require "gedmo/doctrine-extensions=^2.4"
+
+    4.2 = Adicionar o Provedor de Serviços do Gedmo em 'config/app' => providers:
+
+          LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
+
+    4.3 = Configurar o arquivo 'config/doctrine.php' para trabalhar com atributos de Timestamp:
+
+          Em 'extensions', descomentar a linha => "LaravelDoctrine\Extensions\Timestamps\TimestampableExtension::class,"
+
+          Esta extensão permite trabalhar com atributos de DATA e HORA nas entidades.
+
+5 CRIAR A PASTA 'ENTITIES' em APP:
+
+    Esta pasta armazenará as entidades(models) do projeto.
+

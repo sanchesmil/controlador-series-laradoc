@@ -1,0 +1,29 @@
+
+
+PASSOS para CRIAR e CONFIGURAR a ESTRUTURA de AUTENTICAÇÃO:
+
+1 CRIAÇÃO da ESTRUTURA:
+
+   cmd> php artisan make:auth
+
+   Obs.: Automaticamente serão criadas ROTAS, VIEWS e CONTROLLERS para AUTENTICAÇÃO, como login e registro.
+
+2 CRIAR a ENTIDADE 'USER'
+
+    Na pasta APP/ENTITIES criar a classe 'User'.
+
+    2.1 CONFIGURAR a CLASSE 'USER':
+
+        Adicionar todos os campos necessários e suas anotações para autenticação. (Ver classe 'User.php')
+
+3 CONFIGURAR o provedor de autenticação no arquivo 'config/auth.php':
+
+    Incluir o doctrine como driver e o caminho da entidade de autenticação.
+
+    Ex.:
+
+    'providers' => [
+            'users' => [
+                'driver' => 'doctrine',
+                'model' => App\Entities\User::class,
+            ],
