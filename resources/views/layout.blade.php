@@ -28,12 +28,12 @@
 
     <!-- Se o usuário estiver logado mostra o link p/ Sair -->
     @auth
-        <a  class="navbar-brand text-danger" href="/sair">Sair</a>
+        <a  class="navbar-brand text-danger" href="/logout">Sair</a>
     @endauth
 
 <!-- Se for um 'visitante' mostra link p/ Entrar -->
     @guest
-        <a href="/entrar">Entrar</a>
+        <a href="/login">Entrar</a>
     @endguest
 </nav>
 
